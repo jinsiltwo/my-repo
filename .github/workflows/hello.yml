@@ -1,0 +1,8 @@
+name: Hello                       # 워크플로명
+on: push                          # 이벤트(푸쉬 할 때 실행)
+jobs:                             # 잡 정의
+  hello:                          # 잡ID
+    runs-on: ubuntu-latest        # 러너(우분투에서 실행)
+    steps:                        # 스텝 정의
+      - run: echo "Hello, world"  # 쉘 명령 실행
+      - uses: actions/checkout@v4 # 액션 호출
