@@ -1,0 +1,26 @@
+name: Dump                                   # 액션명
+description: |                               # 액션 개요
+  환경 변수와 github 컨텍스트를 로그에 출력한다.
+  워크플로 디버그에 편리하다.
+inputs:                                      # 액션 입력
+  enable-context:
+    default: 'true'
+    required: false
+    description: 컨텍스트 로그 출력 여부
+outputs:                                     # 액션 출력
+  dumped-date:
+    value: ${{ steps.current.outputs.date }}
+    description: 덤프 일시
+runs:
+  using: composite                           # 액션 구현 방식
+  steps:                                     # 액션의 메인 로직
+    - run: printenv | sort
+      shell: bash
+    - run: echo "${CONTEXT}"
+      if: ${{ inputs.enable-context == 'true' }}
+      env:
+        CONTEXT: ${{ toJSON(github) }}
+      shell: bash
+    - id: current
+      run: echo "date=$(date)" >> "${GITHUB_OUTPUT}"
+      shell: bash
