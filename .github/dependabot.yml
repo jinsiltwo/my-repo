@@ -1,0 +1,6 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions # 패키지 에코시스템
+    directory: /                      # 패키지 매니페스트 배치 위치
+    schedule:                         # 업데이트 스케쥴
+      interval: daily
