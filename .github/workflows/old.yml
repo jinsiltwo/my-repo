@@ -4,4 +4,4 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-go@v4 # 오래된 버전을 의도적으로 지정
+      - uses: actions/setup-go@v4 # 오래된 버전을 의도적으로 지
