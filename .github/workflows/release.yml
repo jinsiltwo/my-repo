@@ -1,0 +1,25 @@
+name: Release
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'       # v1.2.3 형식의 깃 태그가 푸시되면 실행
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ github.ref_name }} # v1.2.3 형식의 값을 깃 태그에서 가져오기
+    permissions:
+      contents: write                 # 릴리즈 노트 작성에 필요한 권한
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+      - run: |                        # 릴리즈 대상 애플리케이션의 빌드
+          go build -ldflags "-X main.version=${VERSION}" \
+            -o "${RUNNER_TEMP}/example" go/example/main.go
+      - run: |                        # 릴리즈 노트 작성과 어셋 업로드
+          gh release create "${VERSION}" --title "${VERSION}" --generate-notes
+          gh release upload "${VERSION}" "${RUNNER_TEMP}/example"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
