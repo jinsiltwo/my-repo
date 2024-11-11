@@ -1,0 +1,10 @@
+name: Bash tracing
+on: push
+jobs:
+  log:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |   # Bash의 추적 옵션을 설정한다. 실행한 명령을 로그에 출력
+          set -x
+          date
+          hostname

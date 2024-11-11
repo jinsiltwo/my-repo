@@ -1,0 +1,21 @@
+name: Artifacts
+on: push
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - run: date > date.txt               # 아티팩트 생성
+      - uses: actions/upload-artifact@v4   # 아티팩트 업로드
+        with:
+          name: uploaded                   # 아티팩트명
+          path: date.txt                   # 업로드 대상 경로
+          retention-days: 7                # 아티팩트 저장 기간
+  download:
+    runs-on: ubuntu-latest
+    needs: [upload]                        # upload 잡의 실행을 기다린다
+    steps:
+      - uses: actions/download-artifact@v4 # 아티팩트 다운로드
+        with:
+          name: uploaded                   # 아티팩트명
+          path: downloaded                 # 다운로드 경로
+      - run: cat downloaded/date.txt       # 아티팩트 표준 출력

@@ -1,0 +1,9 @@
+name: Intermediate environment variables
+on: push
+jobs:
+  print:
+    runs-on: ubuntu-latest
+    env:
+      ACTOR: ${{ github.actor }} # 컨텍스트 값을 환경 변수에 저장
+    steps:
+      - run: echo "${ACTOR}"     # 환경 변수를 경유해 컨텍스트의 속성 참조

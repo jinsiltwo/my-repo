@@ -1,0 +1,12 @@
+name: Change shell
+on: push
+jobs:
+  print:
+    runs-on: ubuntu-latest
+    steps:
+      - shell: bash          # 셸에 Bash를 지정
+        run: echo "${SHELL}"
+      - shell: python        # 셸에 파이썬 지정
+        run: |
+          import os
+          print(os.environ['PATH'])

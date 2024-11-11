@@ -1,0 +1,10 @@
+changelog:
+  categories:
+    - title: Enhancement
+      labels:
+        - enhancement
+  exclude:           # 릴리즈 노트 제외 설정
+    labels:          # 제외할 레이블
+      - dependencies
+    authors:         # 제외할 풀리퀘스트 작성자
+      - dependabot

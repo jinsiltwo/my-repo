@@ -1,0 +1,10 @@
+name: Job summaries
+on: push
+jobs:
+  log:
+    runs-on: ubuntu-latest
+    steps:
+      - run: | # 마크다운 텍스트를 잡 서머리에 출력
+          echo "## Example Title :rocket:" >> "${GITHUB_STEP_SUMMARY}"
+          echo "- first line" >> "${GITHUB_STEP_SUMMARY}"
+          echo "- second line" >> "${GITHUB_STEP_SUMMARY}"

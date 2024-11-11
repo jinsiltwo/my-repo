@@ -1,0 +1,19 @@
+name: Environments
+on:
+  workflow_dispatch:
+    inputs:
+      environment-name:
+        type: environment             # 입력 파라미터로 Environments를 변경
+        default: test
+        required: false
+        description: Environment name
+jobs:
+  print:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment-name }} # 사용할 Environments 지정
+    env:
+      USERNAME: ${{ vars.USERNAME }}            # Environment variables 참조
+      PASSWORD: ${{ secrets.PASSWORD }}         # Environment secrets 참조
+    steps:
+      - run: echo "${USERNAME}"
+      - run: echo "${PASSWORD:0:1} ${PASSWORD#?}"

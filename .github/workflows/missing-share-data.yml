@@ -1,0 +1,8 @@
+name: Missing share data
+on: push
+jobs:
+  share:
+    runs-on: ubuntu-latest
+    steps:
+      - run: export RESULT="hello" # 환경 변수를 사용해 다음 스텝에 값을 전달하려고 한다.
+      - run: echo "${RESULT}"      # 하지만 환경 변수를 참조해도 값이 비어있다.

@@ -1,0 +1,17 @@
+name: Manual matrix
+on: push
+jobs:
+  print:
+    strategy:
+      matrix:                  # 다차원 매트릭스 정의
+        include:               # 조합 조건의 수동 설정
+          - os: ubuntu-latest  # 패턴1
+            version: 20
+          - os: macos-latest   # 패턴2
+            version: 18
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.version }}
+      - run: echo "${RUNNER_OS}" && node --version

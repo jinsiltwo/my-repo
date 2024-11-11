@@ -1,0 +1,12 @@
+name: Override environment variables
+on: push
+env:
+  EXAMPLE: Defined by workflow level     # 워크플로에 환경 변수를 정의
+jobs:
+  print:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "${EXAMPLE}"           # 워크플로 환경 변수를 출력
+      - env:
+          EXAMPLE: Defined by step level # 스텝에서 환경 변수 덮어쓰기
+        run: echo "${EXAMPLE}"           # 덮어쓰기가 환경 변수 출력

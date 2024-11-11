@@ -1,0 +1,9 @@
+name: Variables
+on: push
+jobs:
+  print:
+    runs-on: ubuntu-latest
+    env:
+      USERNAME: ${{ vars.USERNAME }} # 변수 참조
+    steps:
+      - run: echo "${USERNAME}"
