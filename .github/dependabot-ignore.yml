@@ -1,0 +1,14 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: daily
+    ignore:                                      # 업데이트 예외 설정
+      - dependency-name: actions/upload-artifact # 제외할 의존 관계 이름
+        versions:                                # 제외 대상 버전
+          - 4.3.0
+          - 4.3.1
+      - dependency-name: 'actions/*'             # 별표는 임의의 문자열과 매치
+        update-types:                            # 제외할 업데이트 종류
+          - version-update:semver-major

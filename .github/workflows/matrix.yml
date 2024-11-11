@@ -1,0 +1,11 @@
+name: Matrix
+on: push
+jobs:
+  print:
+    strategy:
+      matrix:                                             # 매트릭스 정의
+        os: [ubuntu-latest, windows-latest, macos-latest] # os 속성 정의
+    runs-on: ${{ matrix.os }}                             # os 속성 참조
+    steps:
+      - run: echo "${RUNNER_OS}"
+        shell: bash

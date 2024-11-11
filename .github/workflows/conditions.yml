@@ -1,0 +1,8 @@
+name: Conditions
+on: push
+jobs:
+  skip-or-run:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello"
+        if: ${{ contains(github.run_id, '1') }} # 워크플로 실행ID를 기준으로 분기

@@ -1,0 +1,14 @@
+name: Multi-dimension matrix
+on: push
+jobs:
+  print:
+    strategy:
+      matrix:                                 # 다차원 매트릭스 정의
+        os: [ubuntu-latest, macos-latest]     # os 속성 정의
+        version: [18, 20]                     # version 속성 정의
+    runs-on: ${{ matrix.os }}                 # os 속성 참조
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.version }} # version 속성 참조
+      - run: echo "${RUNNER_OS}" && node --version

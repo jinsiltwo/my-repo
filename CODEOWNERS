@@ -1,0 +1,8 @@
+# 리포지터리 전체의 코드 주인 설정(일치하는 설정이 없는 경우의 복원 위치)
+* @octocat
+
+# 특정 파일 종류에만 코드 주인을 Team으로 설정
+*.txt @example-org/octocat-team
+
+# 특정 디렉터리 아래의 주인을 여러 계정으로 설정
+.github/workflow/ @github @example-org/octocat-team

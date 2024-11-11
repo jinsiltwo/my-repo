@@ -1,0 +1,10 @@
+name: Auto cancel
+on: pull_request
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true # 동일 그룹의 워크플로가 실행 중이면 자동 취소한다
+jobs:
+  sleep:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sleep 120

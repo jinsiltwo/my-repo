@@ -1,0 +1,8 @@
+name: Timeout
+on: push
+jobs:
+  sleep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1     # 워크플로의 타임아웃을 1분으로 설정
+    steps:
+      - run: sleep 120     # 2분(120초)간 대기

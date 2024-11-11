@@ -1,0 +1,9 @@
+name: Schedule
+on:
+  schedule:                # 정기 실행 이벤트
+    - cron: '*/15 * * * *' # 15문마다 실행하는 cron식
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - run: date

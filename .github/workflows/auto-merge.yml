@@ -1,0 +1,14 @@
+name: Auto merge
+on: pull_request
+jobs:
+  merge:
+    if: ${{ github.actor == 'dependabot[bot]' }} # Dependabot 풀리퀘스크만 대상
+    runs-on: ubuntu-latest
+    permissions:                                 # 머지에 필요한 권한
+      contents: write
+      pull-requests: write
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 깃허브 CLI 인증 정보
+    steps:
+      - uses: actions/checkout@v4
+      - run: gh pr merge "${GITHUB_HEAD_REF}" --merge # 깃허브 CLI로 머지

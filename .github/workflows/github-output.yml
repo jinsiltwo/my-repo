@@ -1,0 +1,11 @@
+name: GITHUB_OUTPUT
+on: push
+jobs:
+  share:
+    runs-on: ubuntu-latest
+    steps:
+      - id: source                                     # 스텝ID 설정
+        run: echo "result=Hello" >> "${GITHUB_OUTPUT}" # GITHUB_OUTPUT에 기록
+      - env:
+          RESULT: ${{ steps.source.outputs.result }}   # steps 컨텍스트를 통해 참조
+        run: echo "${RESULT}"

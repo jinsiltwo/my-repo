@@ -1,0 +1,18 @@
+name: Static analysis
+on:
+  pull_request:
+    paths: ['.github/workflows/*.yml', '.github/workflows/*.yaml']
+defaults:                                         # 기볼 셸
+  run:
+    shell: bash
+concurrency:                                      # 자동 취소
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5                            # 타임아웃
+    steps:
+      - uses: actions/checkout@v4
+      - run: |                                    # 정적 분설 실행
+          docker run --rm -v "$(pwd):$(pwd)" -w "$(pwd)" rhysd/actionlint:latest
