@@ -2,10 +2,10 @@ name: Call
 on: pull_request
 jobs:
   call:
-    uses: ./.github/workflows/reusable-workflows.yml # Reusable Workflowsの指定
-    with:                                            # 平文の入力パラメータ指定
+    uses: ./.github/workflows/reusable-workflows.yml # 리유저블 워크플로 지정
+    with:                                            # 텍스트 입력 파라미터 지정
       pr-number: ${{ github.event.pull_request.number }}
-    secrets:                                         # Secretsの入力パラメータ指定
+    secrets:                                         # 시크릿 입력 파라미터 지정
       token: ${{ secrets.GITHUB_TOKEN }}
     permissions:
       contents: read
@@ -16,4 +16,4 @@ jobs:
     steps:
       - run: echo "Result> ${MESSAGE}"
         env:
-          MESSAGE: ${{ needs.call.outputs.message }} # 出力値の参照
+          MESSAGE: ${{ needs.call.outputs.message }} # 출력값 참조

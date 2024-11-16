@@ -2,7 +2,7 @@ name: Release action
 on:
   workflow_dispatch:
     inputs:
-      bump-level: # バージョニングスクリプトの引数として利用する
+      bump-level: # 버전 관리 스크립트의 인수로 사용한다
         type: choice
         options: [patch, minor, major]
         required: true
@@ -19,7 +19,7 @@ jobs:
           EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
           BUMP_LEVEL: ${{ inputs.bump-level }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: | # バージョニングスクリプトを実行し、リリースノートを生成する
+        run: | # 버전 관리 스크립트를 실행하고 릴리즈 노트를 생성한다.
           git config --global user.name "${USERNAME}"
           git config --global user.email "${EMAIL}"
           version="$(.github/scripts/bump.sh "${BUMP_LEVEL}")"

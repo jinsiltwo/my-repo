@@ -1,21 +1,21 @@
 name: Reusable Workflows
 on:
-  workflow_call: # Reusable Workflowsを起動するイベント
-    inputs:      # Reusable Workflowsの入力パラメータ定義（平文）
+  workflow_call: # 리유저블 워크플로를 실행하는 이벤트
+    inputs:      # 리유저블 워크플로의 입력 파라미터(텍스트)
       pr-number:
         type: string
         default: ${{ github.event.pull_request.number }}
         required: false
-        description: プルリクエスト番号
-    secrets:     # Reusable Workflowsの入力パラメータ定義（Secrets）
+        description: 풀리퀘스트 번호
+    secrets:     # 리유저블 워크플로 입력 파라미터 정의(시크릿)
       token:
         required: true
-        description: GitHubトークン
-    outputs:     # Reusable Workflowsの出力値定義
+        description: GitHub 토큰
+    outputs:     # 리유저블 워크플로의 출력값 정의
       message:
         value: ${{ jobs.comment.outputs.pr-comment }}
-        description: メッセージ
-jobs:            # Reusable Workflowsのジョブ定義
+        description: 메시지
+jobs:            # 리유저블 워크플로의 잡 정의
   comment:
     runs-on: ubuntu-latest
     permissions:
